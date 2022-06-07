@@ -1,0 +1,55 @@
+from encodings import gbk
+
+import pywifi as pywifi
+
+
+def get_wifi_interface():
+    wifi = pywifi()
+    if len(wifi.interfaces()) <= 0:
+        print u'wireless card interface not found!'
+        exit()
+        if len(wifi.interfaces()) == 1:
+            print u'wireless card interface: %s'%(wifi.interfaces()[0].name())
+            return wifi.interfaces()[0]
+        else:
+            print '%-4s  %s'%(u'serial number',u'network card interface name')
+            for i,w in enumerate(wifi.interfaces()):
+                print '%-4s  %s'%(i,w.name())
+                while true:
+                    iface_no = raw_input('please select network card interface serial number:'.decode(utf-8').encode('gbk'))
+                    no = int(iface_no)
+                    if no>=0 and no< len(wifi.interfaces()):
+                        return wifi.interfaces()[no]
+                def scan(face):
+                    face.scan()
+                    time.sleep(2)
+                    return face.scan_results()
+                    def test(i,face,x,key,stu,ts):
+                       showid = x.bssid if len(x.ssid)==0 or x.ssid=='\\x00' or len(x.ssid)>len(x.bssid) else x.ssid
+                       key_index = 0
+                       while key_index < len(key):
+                           k = key[key_index]
+                           x.key = k.strip()
+                           face.remove_all_network_profiles()
+                           profile = profile()
+                           profile.ssid = x.ssid
+                           profile.auth = const.auth_alg_open
+                           profile.akm.append(const.akm_type_wpa2psk)
+                           profile.cipher = const.cipher_type_ccmp
+                           profile.key = x.key
+                           face.connect(face.add_network_profile(profile))
+                           code = -1
+                           t1 = time.time()
+                           now = time.time() - t1
+                           while true:
+                               time.sleep(0.1)
+                               code =face.satus()
+                               now = time.time()-t1
+                               if now>ts:
+                                   break
+                                   stu.write("\r%-6s| %-18s| %5.2fs | %-6 %-15s | %-12s"%(i,showid,now,len(key)-key_index,k.strip(),get_iface_status(code)))
+                                   stu.flush()
+                                   if code == const.iface_disconnected :
+                                       breakelif code == const.iface_connected:
+                                       face.disconnect()
+                                       stu.write("\r%-6s| %-18s| %5.2fs | %-6s %-15s | %-12s\n"%())
